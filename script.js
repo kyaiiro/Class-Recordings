@@ -58,7 +58,7 @@ async function fetchAllByStatus(username, status, onProgress = null) {
         if (!entry || !entry.media) continue;
         const score = entry.score ?? 0;
         // Only include if score > 8
-        if (score < 8) continue;
+        if (score < 85) continue;
         
         const media = entry.media;
         const title = media.title?.english || media.title?.romaji || "Untitled";
