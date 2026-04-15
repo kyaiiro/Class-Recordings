@@ -160,7 +160,7 @@ async function fetchData() {
     const currentCount = currentEntries.length;
     const completedCount = completedEntries.length;
     
-    console.log(`Fetched ${totalCount} anime (${currentCount} CURRENT, ${completedCount} COMPLETED) with score > 8`);
+    console.log(`Fetched ${totalCount} anime (${currentCount} CURRENT, ${completedCount} COMPLETED) with score >= 8.5/10`);
     
     render();
   } catch (err) {
