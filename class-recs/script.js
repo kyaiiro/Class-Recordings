@@ -93,7 +93,7 @@
         if (rawName === "") rawName = "untitled_media";
         rawName = formatTitleWithSlashes(rawName);
 
-        rawName = rawName + base.split(".")[0]
+        rawName = base.split(".")[0] + " " + rawName;
         
         return rawName;
     }
