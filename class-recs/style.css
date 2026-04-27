@@ -61,13 +61,13 @@ body {
     transition: transform 0.2s ease, box-shadow 0.25s ease;
     width: 100%;
     max-width: 480px;
-    border: 1px solid #e4edf2;
+    border: gray;
 }
 
 .video-card:hover {
     transform: translateY(-6px);
     box-shadow: 0 28px 40px -16px rgba(0, 20, 40, 0.2);
-    border-color: #cbdbe6;
+    border-color: gray;
 }
 
 /* title above video */
@@ -77,7 +77,7 @@ body {
     padding: 1rem 1rem 0.5rem 1rem;
     text-align: center;
     background: black;
-    color: #0f2b3b;
+    color: #4d0000;
     border-bottom: gray;
     word-break: break-word;
     white-space: normal;
