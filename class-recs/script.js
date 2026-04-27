@@ -18,7 +18,7 @@
                     <path d="M12 8V12M12 16H12.01M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="#93a9d4" stroke-width="1.4" stroke-linecap="round"/>
                     <circle cx="12" cy="12" r="9" stroke="#6b8fcb" stroke-width="1" stroke-dasharray="2 2"/>
                 </svg>
-                <h3>${isError ? '⚠️ cannot fetch videos' : '🎞️ no videos found'}</h3>
+                <h3>${isError ? '⚠️ cannot fetch videos' : 'Error fetching videos, refresh page'}</h3>
                 <p>${message}</p>
             `;
             videoGrid.appendChild(emptyDiv);
@@ -92,6 +92,8 @@
         rawName = rawName.replace(/[_\-]/g, ' ').replace(/\s+/g, ' ').trim();
         if (rawName === "") rawName = "untitled_media";
         rawName = formatTitleWithSlashes(rawName);
+
+        rawName = rawName + base.split(".")[0]
         
         return rawName;
     }
@@ -123,7 +125,6 @@
                         </video>
                     </div>
                     <div class="video-meta">
-                        <span class="file-badge">${video.name}</span>
                         ${dateStr ? `<span class="date-badge">📅 ${dateStr}</span>` : ''}
                     </div>
                 `;

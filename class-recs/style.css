@@ -87,12 +87,6 @@ body {
     gap: 8px;
 }
 
-.video-title::before {
-    content: "🎬";
-    font-size: 1.1rem;
-    opacity: 0.8;
-}
-
 /* video wrapper */
 .video-wrapper {
     position: relative;
