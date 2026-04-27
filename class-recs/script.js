@@ -96,6 +96,43 @@
         return rawName;
     }
     
+    function renderVideoCards(videos) {
+        if (loadingDiv && loadingDiv.parentNode) loadingDiv.remove();
+        if (videoGrid) {
+            videoGrid.innerHTML = '';
+            
+            videos.forEach(video => {
+                console.log(`Found video: ${video.name}`);
+                
+                const card = document.createElement('div');
+                card.className = 'video-card';
+                
+                const prettyTitle = getPrettyTitle(video.name);
+                const dateStr = video.date ? new Date(video.date).toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric'
+                }) : '';
+                
+                card.innerHTML = `
+                    <div class="video-title">${prettyTitle}</div>
+                    <div class="video-wrapper">
+                        <video controls preload="metadata" poster="">
+                            <source src="${video.url}" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    <div class="video-meta">
+                        <span class="file-badge">${video.name}</span>
+                        ${dateStr ? `<span class="date-badge">📅 ${dateStr}</span>` : ''}
+                    </div>
+                `;
+                
+                videoGrid.appendChild(card);
+            });
+        }
+    }
+    
     async function initDarkGallery() {
         try {
             console.log("Initializing video gallery...");
