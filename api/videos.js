@@ -61,7 +61,7 @@ export default async function handler(req, res) {
             headers['Authorization'] = `token ${GITHUB_TOKEN}`;
         }
 
-        const apiUrl = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/tags`;
+        const apiUrl = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/releases`;
         
         const response = await fetch(apiUrl, { headers });
 
