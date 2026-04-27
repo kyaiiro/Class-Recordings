@@ -25,13 +25,22 @@
         }
     }
     
-    // Fetch videos from the backend API
-    async function getVideosFromBackend() {
+    // Fetch videos from the backend API with retry logic
+    async function getVideosFromBackend(retries = 3) {
         try {
             console.log("Fetching videos from backend API...");
-            const response = await fetch('/api/videos');
+            const response = await fetch('/api/videos', {
+                timeout: 10000 // 10 second timeout
+            });
             
             if (!response.ok) {
+                // Retry on 5xx errors (server issues, rate limits)
+                if (response.status >= 500 && retries > 0) {
+                    console.log(`Retrying... (${retries} attempts left)`);
+                    await new Promise(r => setTimeout(r, 1000)); // Wait 1s before retry
+                    return getVideosFromBackend(retries - 1);
+                }
+                
                 const error = await response.json();
                 throw new Error(error.message || `API returned ${response.status}`);
             }
