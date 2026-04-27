@@ -1,0 +1,216 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: linear-gradient(145deg, #f5f7fc 0%, #eef2f5 100%);
+    font-family: system-ui, 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
+    padding: 2rem 1.5rem;
+    color: #1e2a3e;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* header area */
+.gallery-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.gallery-header h1 {
+    font-size: 2.2rem;
+    font-weight: 600;
+    background: linear-gradient(135deg, #1e3c5c, #2b4c6e);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    letter-spacing: -0.3px;
+}
+
+.gallery-header p {
+    color: #4a627a;
+    margin-top: 0.6rem;
+    font-size: 1rem;
+    border-bottom: 1px solid #cddfe7;
+    display: inline-block;
+    padding-bottom: 0.4rem;
+}
+
+/* grid layout - responsive cards */
+.video-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2rem;
+    justify-items: center;
+    align-items: start;
+}
+
+/* video card */
+.video-card {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(0px);
+    background: #ffffff;
+    border-radius: 1.5rem;
+    box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.02);
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.25s ease;
+    width: 100%;
+    max-width: 480px;
+    border: 1px solid #e4edf2;
+}
+
+.video-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 28px 40px -16px rgba(0, 20, 40, 0.2);
+    border-color: #cbdbe6;
+}
+
+/* title above video */
+.video-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    padding: 1rem 1rem 0.5rem 1rem;
+    text-align: center;
+    background: white;
+    color: #0f2b3b;
+    border-bottom: 2px solid #eef2f9;
+    word-break: break-word;
+    white-space: normal;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.video-title::before {
+    content: "🎬";
+    font-size: 1.1rem;
+    opacity: 0.8;
+}
+
+/* video wrapper */
+.video-wrapper {
+    position: relative;
+    background: #0000000c;
+    background: #0f1a24;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+video {
+    width: 100%;
+    display: block;
+    background: #000000;
+    aspect-ratio: 16 / 9;
+    object-fit: contain;
+    cursor: pointer;
+}
+
+/* video controls styling (clean) */
+video:focus {
+    outline: none;
+}
+
+/* small info footer inside card */
+.video-meta {
+    padding: 0.7rem 1rem 1rem 1rem;
+    font-size: 0.75rem;
+    color: #6c7f8f;
+    background: #ffffff;
+    border-top: 1px solid #eff3f8;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.file-badge {
+    background: #eef2fa;
+    padding: 0.2rem 0.6rem;
+    border-radius: 40px;
+    font-family: monospace;
+    font-size: 0.7rem;
+    color: #2c5b7c;
+    max-width: 180px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.play-hint {
+    font-size: 0.7rem;
+    background: transparent;
+    color: #6582a0;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+/* empty state & error message */
+.empty-state {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 4rem 2rem;
+    background: #fafcff;
+    border-radius: 2rem;
+    margin-top: 2rem;
+    box-shadow: inset 0 1px 3px #0001, 0 10px 20px -5px rgba(0,0,0,0.05);
+}
+
+.empty-state svg {
+    margin-bottom: 1rem;
+    opacity: 0.6;
+}
+
+.empty-state h3 {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #2c4c6e;
+}
+
+.empty-state p {
+    margin-top: 0.7rem;
+    color: #56748c;
+    max-width: 460px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.error-card {
+    border-left: 5px solid #e06c6c;
+}
+
+footer {
+    margin-top: 3.5rem;
+    text-align: center;
+    font-size: 0.8rem;
+    color: #6b8a9e;
+    border-top: 1px solid #d4e2ea;
+    padding-top: 2rem;
+}
+
+@media (max-width: 700px) {
+    body {
+        padding: 1rem;
+    }
+    .video-grid {
+        gap: 1.2rem;
+    }
+    .video-title {
+        font-size: 1rem;
+        padding: 0.8rem 0.8rem 0.3rem 0.8rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .video-card {
+        transition: none;
+    }
+}
