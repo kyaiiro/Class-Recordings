@@ -131,8 +131,8 @@
             userMessage += `Troubleshooting:\n\n`;
             userMessage += `1️⃣ Make sure the backend API is configured\n`;
             userMessage += `   Check that environment variables are set on Vercel\n\n`;
-            userMessage += `2️⃣ Verify your Microsoft OneDrive folder is accessible\n`;
-            userMessage += `   Check the ONEDRIVE_DRIVE_ID and ONEDRIVE_ITEM_ID\n\n`;
+            userMessage += `2️⃣ Verify your GitHub repository is set up\n`;
+            userMessage += `   Check GITHUB_OWNER and GITHUB_REPO environment variables\n\n`;
             userMessage += `3️⃣ Open browser console (F12) to see detailed errors`;
             
             showEmptyState(userMessage, true);
