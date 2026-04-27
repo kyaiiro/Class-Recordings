@@ -50,7 +50,7 @@ export default async function handler(req, res) {
     }
 
     try {
-        // Fetch releases from GitHub API
+        // Fetch releases from GitHub API with retry logic
         const headers = {
             'Accept': 'application/vnd.github.v3+json',
             'User-Agent': 'Video Gallery'
@@ -63,10 +63,39 @@ export default async function handler(req, res) {
 
         const apiUrl = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/releases`;
         
-        const response = await fetch(apiUrl, { headers });
-
-        if (!response.ok) {
-            throw new Error(`GitHub API returned ${response.status}: ${response.statusText}`);
+        let response;
+        let lastError;
+        
+        // Retry logic: try up to 3 times
+        for (let attempt = 1; attempt <= 3; attempt++) {
+            try {
+                response = await fetch(apiUrl, { headers });
+                
+                if (response.ok) {
+                    break; // Success, exit retry loop
+                }
+                
+                lastError = new Error(`GitHub API returned ${response.status}: ${response.statusText}`);
+                
+                // Only retry on 5xx errors (server issues)
+                if (response.status < 500) {
+                    throw lastError;
+                }
+                
+                // Wait before retrying (exponential backoff: 500ms, 1s, 2s)
+                if (attempt < 3) {
+                    await new Promise(r => setTimeout(r, 500 * attempt));
+                }
+            } catch (err) {
+                lastError = err;
+                if (attempt < 3) {
+                    await new Promise(r => setTimeout(r, 500 * attempt));
+                }
+            }
+        }
+        
+        if (!response || !response.ok) {
+            throw lastError || new Error('Failed to fetch from GitHub after retries');
         }
 
         const releases = await response.json();
