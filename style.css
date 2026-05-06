@@ -114,8 +114,8 @@ video:focus {
 .video-meta {
     padding: 0.7rem 1rem 1rem 1rem;
     font-size: 0.75rem;
-    color: #6c7f8f;
-    background: rgb(400, 400, 400);
+    color: rgb(500, 500, 500);
+    background: rgb(200, 200, 200);
     border-top: 1px solid #eff3f8;
     display: flex;
     justify-content: center;
